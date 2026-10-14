@@ -26,7 +26,7 @@ def create_notebook2():
         "**Dataset**: The Cancer Genome Atlas — Lung Adenocarcinoma (TCGA-LUAD)  ",
         "**Prediction Target**: Somatic *EGFR* Mutation Status (Class 1 = Mutant [12.4%], Class 0 = Wild-Type [87.6%])  ",
         "",
-        "[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/25A31A0356/UC086-Quantum-Weak-Signal/blob/main/notebooks/Run_In_The_Quantum_Computer.ipynb)",
+        "[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/25A31A0356/UC086-Quantum-1/blob/main/notebooks/Run_In_The_Quantum_Computer.ipynb)",
         "",
         "---",
         "",

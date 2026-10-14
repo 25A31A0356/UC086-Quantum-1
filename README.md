@@ -4,8 +4,8 @@
 **Prediction Target**: Somatic *EGFR* Activating Mutation Status (Class 1 = Mutant [12.4%], Class 0 = Wild-Type [87.6%])  
 **Core Frameworks**: Qiskit 1.x, Qiskit Machine Learning, Scikit-Learn, XGBoost, PyTorch  
 
-[![Open In Colab (Notebook 1: Genomics & Classical Baselines)](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/25A31A0356/UC086-Quantum-Weak-Signal/blob/main/notebooks/Quantum_Colab.ipynb)
-[![Open In Colab (Notebook 2: Quantum Kernel SVM & IBM QPU)](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/25A31A0356/UC086-Quantum-Weak-Signal/blob/main/notebooks/Run_In_The_Quantum_Computer.ipynb)
+[![Open In Colab (Notebook 1: Genomics & Classical Baselines)](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/25A31A0356/UC086-Quantum-1/blob/main/notebooks/Quantum_Colab.ipynb)
+[![Open In Colab (Notebook 2: Quantum Kernel SVM & IBM QPU)](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/25A31A0356/UC086-Quantum-1/blob/main/notebooks/Run_In_The_Quantum_Computer.ipynb)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Qiskit 1.0+](https://img.shields.io/badge/Qiskit-1.0+-6929C4.svg)](https://qiskit.org/)
 [![Scikit-Learn](https://img.shields.io/badge/scikit--learn-1.3+-F7931E.svg)](https://scikit-learn.org/)
@@ -76,7 +76,7 @@ The full hackathon project is organized into **two modular, reproducible Google 
 
 ### 📘 Part 1: `Quantum_Colab.ipynb` (Genomics, Preprocessing & Classical Baselines)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/25A31A0356/UC086-Quantum-Weak-Signal/blob/main/notebooks/Quantum_Colab.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/25A31A0356/UC086-Quantum-1/blob/main/notebooks/Quantum_Colab.ipynb)
 
 #### 1. Real TCGA-LUAD Ingestion via Official APIs
 * We query the official **cBioPortal REST API** (`https://www.cbioportal.org/api`) for the PanCancer Atlas cohort (`luad_tcga_pan_can_atlas_2018`).
@@ -123,7 +123,7 @@ The full hackathon project is organized into **two modular, reproducible Google 
 
 ### ⚛️ Part 2: `Run_In_The_Quantum_Computer.ipynb` (Qiskit QSVC & IBM Quantum QPU)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/25A31A0356/UC086-Quantum-Weak-Signal/blob/main/notebooks/Run_In_The_Quantum_Computer.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/25A31A0356/UC086-Quantum-1/blob/main/notebooks/Run_In_The_Quantum_Computer.ipynb)
 
 #### 1. Handoff Ingestion & Verification
 * Seamlessly loads `handoff/tcga_luad_handoff.npz` and `manifest.json` exported by Notebook 1.
@@ -193,16 +193,16 @@ All models were evaluated on the **exact same untouched test cohort** ($N_{test}
 
 | Notebook File | Focus & Stages Covered | 1-Click Launch |
 | :--- | :--- | :--- |
-| **`Quantum_Colab.ipynb`** | **Part 1 — TCGA-LUAD Ingestion, Preprocessing & Classical Baselines**: 566 Samples, EDA, Stratified Splitting, RBF SVM & XGBoost, and Handoff Export | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/25A31A0356/UC086-Quantum-Weak-Signal/blob/main/notebooks/Quantum_Colab.ipynb) |
-| **`Run_In_The_Quantum_Computer.ipynb`** | **Part 2 — Qiskit Quantum Kernel Learning & IBM Quantum QPU**: 10-Qubit $ZZFeatureMap$, Fidelity Gram Matrix, QSVC Training, 3-Model Benchmark & Superconducting QPU Transpilation | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/25A31A0356/UC086-Quantum-Weak-Signal/blob/main/notebooks/Run_In_The_Quantum_Computer.ipynb) |
-| **`Quantum_Radar_Sonar_Colab.ipynb`** *(Compatibility)* | Exact mirror copy of Notebook 1 so existing bookmarks load Domain 2 seamlessly without 404 errors. | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/25A31A0356/UC086-Quantum-Weak-Signal/blob/main/notebooks/Quantum_Radar_Sonar_Colab.ipynb) |
+| **`Quantum_Colab.ipynb`** | **Part 1 — TCGA-LUAD Ingestion, Preprocessing & Classical Baselines**: 566 Samples, EDA, Stratified Splitting, RBF SVM & XGBoost, and Handoff Export | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/25A31A0356/UC086-Quantum-1/blob/main/notebooks/Quantum_Colab.ipynb) |
+| **`Run_In_The_Quantum_Computer.ipynb`** | **Part 2 — Qiskit Quantum Kernel Learning & IBM Quantum QPU**: 10-Qubit $ZZFeatureMap$, Fidelity Gram Matrix, QSVC Training, 3-Model Benchmark & Superconducting QPU Transpilation | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/25A31A0356/UC086-Quantum-1/blob/main/notebooks/Run_In_The_Quantum_Computer.ipynb) |
+| **`Quantum_Radar_Sonar_Colab.ipynb`** *(Compatibility)* | Exact mirror copy of Notebook 1 so existing bookmarks load Domain 2 seamlessly without 404 errors. | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/25A31A0356/UC086-Quantum-1/blob/main/notebooks/Quantum_Radar_Sonar_Colab.ipynb) |
 
 ---
 
 ## 📁 Repository Structure
 
 ```
-UC086-Quantum-Weak-Signal/
+UC086-Quantum-1/
 ├── README.md                                # Comprehensive project documentation & architecture
 ├── requirements.txt                         # Python dependencies (Qiskit 1.x, XGBoost, Scikit-Learn)
 ├── LICENSE                                  # MIT License (Pragati Engineering College)
@@ -247,7 +247,7 @@ UC086-Quantum-Weak-Signal/
 
 ### 1. Clone & Install Dependencies
 ```bash
-git clone https://github.com/25A31A0356/UC086-Quantum-Weak-Signal.git
+git clone https://github.com/25A31A0356/UC086-Quantum-1.git
 cd UC086-Quantum-Weak-Signal
 
 # Create and activate virtual environment
