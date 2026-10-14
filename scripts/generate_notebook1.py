@@ -630,7 +630,7 @@ def create_notebook1():
         "   - **XGBoost Classifier**: Balanced Accuracy: **76.8%** | ROC-AUC: **0.820** | Macro F1: **0.742**",
         "4. **Reproducible Handoff**: Stored `tcga_luad_handoff.npz` and `manifest.json`.",
         "",
-        "👉 **Next Step**: Open and run **[Notebook 2: Run_In_The_Quantum_Computer.ipynb](https://colab.research.google.com/github/25A31A0356/UC086-Quantum-Weak-Signal/blob/main/notebooks/Run_In_The_Quantum_Computer.ipynb)** to compute the Qiskit Quantum Feature Map, generate the Quantum Kernel Gram matrix, train the Quantum SVM, and benchmark quantum performance against these classical baselines."
+        "👉 **Next Step**: Open and run **[Notebook 2: Run_In_The_Quantum_Computer.ipynb](https://colab.research.google.com/github/25A31A0356/UC086-Quantum-1/blob/main/notebooks/Run_In_The_Quantum_Computer.ipynb)** to compute the Qiskit Quantum Feature Map, generate the Quantum Kernel Gram matrix, train the Quantum SVM, and benchmark quantum performance against these classical baselines."
     ]))
 
     nb = build_notebook(cells)

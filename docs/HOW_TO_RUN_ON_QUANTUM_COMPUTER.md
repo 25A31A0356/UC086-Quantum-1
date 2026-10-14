@@ -21,7 +21,7 @@ This guide provides step-by-step instructions for executing the Domain 2 cancer 
 ## 🚀 2. Running in Google Colab (`Run_In_The_Quantum_Computer.ipynb`)
 
 ### Option A: Interactive Token Input (Recommended)
-Open **[Run_In_The_Quantum_Computer.ipynb](https://colab.research.google.com/github/25A31A0356/UC086-Quantum-Weak-Signal/blob/main/notebooks/Run_In_The_Quantum_Computer.ipynb)** in Google Colab.
+Open **[Run_In_The_Quantum_Computer.ipynb](https://colab.research.google.com/github/25A31A0356/UC086-Quantum-1/blob/main/notebooks/Run_In_The_Quantum_Computer.ipynb)** in Google Colab.
 
 In **Cell 7 (Physical Quantum Hardware Deployment)**, paste your token when prompted:
 ```python

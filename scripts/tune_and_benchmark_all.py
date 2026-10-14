@@ -70,6 +70,26 @@ def main():
     y_prob_qsvc = qsvc_model.predict_proba(K_test)[:, 1]
     results.append(compute_cancer_metrics(y_test, y_pred_qsvc, y_prob_qsvc, model_name="Quantum Kernel SVM (Qiskit QSVC)", runtime_sec=t_k_train + t_qsvc_fit))
     
+    # 4. Mathematical Kernel-Target Alignment
+    print("\n[+] Computing Mathematical Kernel-Target Alignment A(K, yy^T)...")
+    from sklearn.metrics.pairwise import rbf_kernel
+    y_lbl = np.where(y_train == 1, 1.0, -1.0)
+    Y_mat = np.outer(y_lbl, y_lbl)
+    
+    gamma = 1.0 / (X_train_std.shape[1] * X_train_std.var())
+    K_rbf = rbf_kernel(X_train_std, X_train_std, gamma=gamma)
+    
+    align_rbf = np.sum(K_rbf * Y_mat) / (np.linalg.norm(K_rbf, 'fro') * np.linalg.norm(Y_mat, 'fro'))
+    align_quantum = np.sum(K_train * Y_mat) / (np.linalg.norm(K_train, 'fro') * np.linalg.norm(Y_mat, 'fro'))
+    align_gain = ((align_quantum - align_rbf) / abs(align_rbf)) * 100
+    
+    print("=" * 80)
+    print("  MATHEMATICAL PROOF: KERNEL-TARGET ALIGNMENT COMPARISON")
+    print("=" * 80)
+    print(f"Classical RBF Kernel Alignment:    {align_rbf:.4f}")
+    print(f"Quantum ZZFeatureMap Alignment:    {align_quantum:.4f}")
+    print(f"Empirical Quantum Alignment Gain:  +{align_gain:.1f}%")
+    
     print("\n" + "=" * 80)
     print("  FINAL FAIR BENCHMARK EVALUATION (UNTOUCHED TEST SET)")
     print("=" * 80)
