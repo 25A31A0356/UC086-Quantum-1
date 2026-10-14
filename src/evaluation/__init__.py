@@ -1,19 +1,6 @@
-"""Evaluation metrics, benchmarks, and radar/sonar visualization utilities."""
+"""
+Evaluation Package for Cancer Genomics Machine Learning.
+"""
+from .metrics import compute_cancer_metrics, format_benchmark_table
 
-from .metrics import (
-    evaluate_detection_metrics,
-    compute_clutter_rejection_ratio,
-    run_snr_sweep_benchmark,
-    plot_roc_comparison,
-    plot_snr_sweep_results,
-    plot_radar_spectrogram
-)
-
-__all__ = [
-    "evaluate_detection_metrics",
-    "compute_clutter_rejection_ratio",
-    "run_snr_sweep_benchmark",
-    "plot_roc_comparison",
-    "plot_snr_sweep_results",
-    "plot_radar_spectrogram"
-]
+__all__ = ["compute_cancer_metrics", "format_benchmark_table"]

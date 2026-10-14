@@ -1,15 +1,6 @@
-"""Classical Radar and Sonar baseline processing and ML models."""
+"""
+Classical Baselines Package for Cancer Prediction.
+"""
+from .baselines import train_classical_svm, train_classical_xgboost
 
-from .baselines import (
-    ClassicalMatchedFilter,
-    ClassicalSVM,
-    ClassicalRandomForest,
-    train_classical_baselines
-)
-
-__all__ = [
-    "ClassicalMatchedFilter",
-    "ClassicalSVM",
-    "ClassicalRandomForest",
-    "train_classical_baselines"
-]
+__all__ = ["train_classical_svm", "train_classical_xgboost"]

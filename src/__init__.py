@@ -1,7 +1,7 @@
 """
-Quantum Radar and Sonar Signal-Processing Enhancement Package
-Quantum-enhanced signal detection, clutter rejection, and target classification.
+Qiskit Fall Fest 2026 — Domain 2: Quantum Kernel Learning for Cancer Prediction
+Core Python Package.
 """
 
-__version__ = "1.0.0"
-__author__ = "Quantum Radar & Sonar Research"
+__version__ = "2.0.0"
+__author__ = "Quantum Machine Learning Research Team"

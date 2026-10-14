@@ -1,100 +1,60 @@
 """
-Classical Radar/Sonar Signal Processing & Machine Learning Baselines.
-Provides standard Matched Filters, Support Vector Machines, Random Forests,
-and Multilayer Perceptrons for benchmarking against Quantum AI/ML methods.
+Classical Machine Learning Baselines for TCGA-LUAD Cancer Prediction:
+1. Classical Support Vector Machine (RBF Kernel)
+2. Extreme Gradient Boosting (XGBoost Classifier)
 """
 
+import time
 import numpy as np
-from typing import Dict, Any, Tuple
 from sklearn.svm import SVC
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.neural_network import MLPClassifier
-from scipy.signal import correlate
+from sklearn.model_selection import GridSearchCV, StratifiedKFold
+import xgboost as xgb
 
-
-class ClassicalMatchedFilter:
+def train_classical_svm(X_train, y_train, seed=42):
     """
-    Standard Classical Radar/Sonar Matched Filter.
-    Computes cross-correlation of received return with reference transmit waveform:
-    y(t) = \int r(\tau) s^*(\tau - t) d\tau
+    Trains non-linear RBF SVM with 5-fold CV hyperparameter tuning and balanced class weights.
     """
-
-    def __init__(self, reference_chirp: np.ndarray):
-        self.reference = reference_chirp
-        self.ref_energy = np.sum(np.abs(reference_chirp) ** 2)
-
-    def process(self, rx_signal: np.ndarray) -> Tuple[np.ndarray, float]:
-        """
-        Cross-correlates received signal with reference chirp.
-        Returns correlation output and peak output SNR.
-        """
-        corr = correlate(rx_signal, self.reference, mode='same')
-        peak_val = np.max(np.abs(corr))
-        peak_snr = (peak_val ** 2) / (self.ref_energy + 1e-12)
-        return corr, float(peak_snr)
-
-
-class ClassicalSVM:
-    """Classical Support Vector Machine with Radial Basis Function (RBF) Kernel."""
-
-    def __init__(self, C: float = 1.0, gamma: str = 'scale'):
-        self.model = SVC(kernel='rbf', C=C, gamma=gamma, probability=True, random_state=42)
-
-    def fit(self, X_train: np.ndarray, y_train: np.ndarray):
-        self.model.fit(X_train, y_train)
-        return self
-
-    def predict(self, X_test: np.ndarray) -> np.ndarray:
-        return self.model.predict(X_test)
-
-    def predict_proba(self, X_test: np.ndarray) -> np.ndarray:
-        return self.model.predict_proba(X_test)
-
-
-class ClassicalRandomForest:
-    """Classical Random Forest Classifier for acoustic/radar signatures."""
-
-    def __init__(self, n_estimators: int = 100, max_depth: int = 10):
-        self.model = RandomForestClassifier(n_estimators=n_estimators, max_depth=max_depth, random_state=42)
-
-    def fit(self, X_train: np.ndarray, y_train: np.ndarray):
-        self.model.fit(X_train, y_train)
-        return self
-
-    def predict(self, X_test: np.ndarray) -> np.ndarray:
-        return self.model.predict(X_test)
-
-    def predict_proba(self, X_test: np.ndarray) -> np.ndarray:
-        return self.model.predict_proba(X_test)
-
-
-def train_classical_baselines(
-    X_train: np.ndarray,
-    y_train: np.ndarray,
-    X_test: np.ndarray,
-    y_test: np.ndarray
-) -> Dict[str, Dict[str, Any]]:
-    """
-    Train and evaluate classical SVM, Random Forest, and MLP baselines.
-    """
-    baselines = {
-        "Classical_SVM_RBF": ClassicalSVM(C=1.0),
-        "Classical_RandomForest": ClassicalRandomForest(n_estimators=100),
-        "Classical_MLP": MLPClassifier(hidden_layer_sizes=(32, 16), max_iter=300, random_state=42)
+    param_grid = {
+        'C': [0.1, 1.0, 5.0, 10.0, 50.0],
+        'gamma': ['scale', 'auto', 0.05, 0.1, 0.2]
     }
+    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=seed)
+    grid = GridSearchCV(
+        SVC(kernel='rbf', probability=True, class_weight='balanced', random_state=seed),
+        param_grid,
+        scoring='roc_auc',
+        cv=cv,
+        n_jobs=-1
+    )
+    t0 = time.time()
+    grid.fit(X_train, y_train)
+    elapsed = time.time() - t0
+    return grid.best_estimator_, grid.best_params_, elapsed
 
-    results = {}
-    for name, clf in baselines.items():
-        clf.fit(X_train, y_train)
-        preds = clf.predict(X_test)
-        probs = clf.predict_proba(X_test)[:, 1] if hasattr(clf, 'predict_proba') else None
-        
-        acc = np.mean(preds == y_test)
-        results[name] = {
-            "model": clf,
-            "accuracy": float(acc),
-            "predictions": preds,
-            "probabilities": probs
-        }
-
-    return results
+def train_classical_xgboost(X_train, y_train, seed=42):
+    """
+    Trains XGBoost Classifier with scale_pos_weight for imbalanced cancer mutation classification.
+    """
+    scale_pos_weight = (y_train == 0).sum() / max(1, (y_train == 1).sum())
+    param_grid = {
+        'max_depth': [2, 3, 4],
+        'learning_rate': [0.03, 0.08, 0.15],
+        'n_estimators': [50, 100, 150],
+        'subsample': [0.8, 1.0]
+    }
+    cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=seed)
+    grid = GridSearchCV(
+        xgb.XGBClassifier(
+            scale_pos_weight=scale_pos_weight,
+            eval_metric='logloss',
+            random_state=seed
+        ),
+        param_grid,
+        scoring='roc_auc',
+        cv=cv,
+        n_jobs=-1
+    )
+    t0 = time.time()
+    grid.fit(X_train, y_train)
+    elapsed = time.time() - t0
+    return grid.best_estimator_, grid.best_params_, elapsed

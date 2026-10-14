@@ -1,23 +1,15 @@
-"""Quantum AI and Quantum Computing algorithms for Radar and Sonar enhancement."""
-
-from .feature_maps import (
-    angle_feature_map,
-    zz_feature_map,
-    amplitude_feature_map,
-    create_quantum_circuit_diagram
-)
-from .vqc_classifier import VariationalQuantumClassifier, TorchQuantumClassifier
-from .quantum_kernel import QuantumKernelEstimator, QuantumSVC
-from .quantum_denoiser import QuantumSignalDenoiser
+"""
+Quantum Machine Learning Package for Cancer Prediction (Qiskit 1.x).
+"""
+from .feature_maps import build_cancer_feature_map, build_pauli_feature_map
+from .quantum_kernel import QuantumKernelEngine, train_qsvc
+from .ibm_quantum_backend import get_quantum_backend, transpile_circuit_for_hardware
 
 __all__ = [
-    "angle_feature_map",
-    "zz_feature_map",
-    "amplitude_feature_map",
-    "create_quantum_circuit_diagram",
-    "VariationalQuantumClassifier",
-    "TorchQuantumClassifier",
-    "QuantumKernelEstimator",
-    "QuantumSVC",
-    "QuantumSignalDenoiser"
+    "build_cancer_feature_map",
+    "build_pauli_feature_map",
+    "QuantumKernelEngine",
+    "train_qsvc",
+    "get_quantum_backend",
+    "transpile_circuit_for_hardware"
 ]
